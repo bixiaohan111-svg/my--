@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华为云作战与学习地图社区</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --huawei-red: #C7000B;
+            --huawei-bg: #F5F5F5;
+            --huawei-text: #282828;
+            --huawei-blue: #007DB8;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: var(--huawei-bg);
+            color: var(--huawei-text);
+        }
+
+        /* 导航栏悬浮菜单 */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 180px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            z-index: 100;
+            border-top: 2px solid var(--huawei-red);
+        }
+
+        .nav-item:hover .dropdown-content {
+            display: block;
+        }
+
+        /* GTM 选项激活状态 */
+        .gtm-tab.active {
+            background-color: var(--huawei-red);
+            color: white;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .section-card:hover {
+            box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+        }
+
+        .section-title-line {
+            border-left: 4px solid var(--huawei-red);
+            padding-left: 12px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 顶部 Header -->
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-[101]">
+        <div class="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-10">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-red-600 tracking-tighter">HUAWEI</span>
+                    <span class="ml-2 text-xl font-light text-gray-400 border-l pl-2 border-gray-300">Cloud</span>
+                </div>
+                <!-- 搜索框 -->
+                <div class="relative w-80">
+                    <input type="text" placeholder="搜索知识库、作战地图..." 
+                        class="w-full bg-gray-50 border border-gray-200 focus:bg-white focus:border-red-500 rounded-sm py-1.5 pl-9 pr-4 text-sm outline-none transition-all">
+                    <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-6 text-sm">
+                <a href="#" class="text-gray-600 hover:text-red-600"><i class="fas fa-desktop mr-1"></i> 管理界面</a>
+                <div class="h-4 w-px bg-gray-200"></div>
+                <div class="flex items-center space-x-2 cursor-pointer group">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold shadow-sm">JS</div>
+                    <span class="text-gray-700 font-medium group-hover:text-red-600 transition-colors">个人中心</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 导航栏 -->
+        <nav class="bg-white shadow-sm h-12">
+            <div class="max-w-[1400px] mx-auto px-6 h-full flex items-center space-x-10 text-[15px] font-medium text-gray-700">
+                <a href="#" class="text-red-600 font-bold border-b-2 border-red-600 h-full flex items-center px-1">首页</a>
+                
+                <!-- GTM 专区 -->
+                <div class="nav-item relative h-full flex items-center group cursor-pointer">
+                    <span>GTM专区 <i class="fas fa-chevron-down text-[10px] ml-1 opacity-60"></i></span>
+                    <div class="dropdown-content">
+                        <a href="#" class="block px-6 py-3 hover:bg-red-50 hover:text-red-600 transition-colors">公有云</a>
+                        <a href="#" class="block px-6 py-3 hover:bg-red-50 hover:text-red-600 transition-colors">混合云</a>
+                        <a href="#" class="block px-6 py-3 hover:bg-red-50 hover:text-red-600 transition-colors">伙伴云</a>
+                        <a href="#" class="block px-6 py-3 hover:bg-red-50 hover:text-red-600 transition-colors border-t border-gray-50">在线展厅</a>
+                    </div>
+                </div>
+
+                <a href="#" class="hover:text-red-600 transition-colors h-full flex items-center">解决方案专区</a>
+
+                <!-- 作战专区 -->
+                <div class="nav-item relative h-full flex items-center group cursor-pointer">
+                    <span>作战专区 <i class="fas fa-chevron-down text-[10px] ml-1 opacity-60"></i></span>
+                    <div class="dropdown-content">
+                        <a href="#" class="block px-6 py-3 hover:bg-red-50 hover:text-red-600 transition-colors">做客户</a>
+                        <a href="#" class="block px-6 py-3 hover:bg-red-50 hover:text-red-600 transition-colors">做项目</a>
+                        <a href="#" class="block px-6 py-3 hover:bg-red-50 hover:text-red-600 transition-colors">做伙伴</a>
+                        <a href="#" class="block px-6 py-3 hover:bg-red-50 hover:text-red-600 transition-colors">优服务</a>
+                    </div>
+                </div>
+
+                <!-- 能力建设 -->
+                <div class="nav-item relative h-full flex items-center group cursor-pointer">
+                    <span>能力建设 <i class="fas fa-chevron-down text-[10px] ml-1 opacity-60"></i></span>
+                    <div class="dropdown-content">
+                        <a href="#" class="block px-6 py-3 hover:bg-red-50 hover:text-red-600 transition-colors">懂战略</a>
+                        <a href="#" class="block px-6 py-3 hover:bg-red-50 hover:text-red-600 transition-colors">善经营</a>
+                        <a href="#" class="block px-6 py-3 hover:bg-red-50 hover:text-red-600 transition-colors">做生态</a>
+                        <a href="#" class="block px-6 py-3 hover:bg-red-50 hover:text-red-600 transition-colors">善交易</a>
+                        <a href="#" class="block px-6 py-3 hover:bg-red-50 hover:text-red-600 transition-colors">控风险</a>
+                        <a href="#" class="block px-6 py-3 hover:bg-red-50 hover:text-red-600 transition-colors">带团队</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Banner 广告 -->
+    <section class="max-w-[1400px] mx-auto px-6 mt-6">
+        <div class="relative h-72 rounded shadow-lg overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1600" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Activity Banner">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center px-16 text-white">
+                <div class="max-w-xl">
+                    <span class="bg-red-600 text-[10px] font-bold px-2 py-0.5 rounded mb-4 inline-block">最新速递</span>
+                    <h2 class="text-4xl font-bold mb-4">华为云全联接大会 2024</h2>
+                    <p class="text-lg opacity-90 mb-8">聚焦行业智能化，共同探索 AI 赋能生产力的无限可能，掌握最新作战地图与上市一张表。</p>
+                    <button class="bg-red-600 px-8 py-2.5 rounded font-bold hover:bg-red-700 transition-all">立即预约</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主内容区 -->
+    <main class="max-w-[1400px] mx-auto px-6 py-12">
+        
+        <!-- GTM 专区资料书架 (带切换逻辑) -->
+        <section class="mb-16">
+            <div class="flex items-center justify-between mb-8">
+                <h3 class="section-title-line">GTM 资料书架</h3>
+                <div class="flex bg-gray-200 p-1 rounded">
+                    <button onclick="switchGTM('public')" id="gtm-btn-public" class="gtm-tab active px-6 py-1.5 text-xs font-bold rounded transition-all">公有云</button>
+                    <button onclick="switchGTM('hybrid')" id="gtm-btn-hybrid" class="gtm-tab px-6 py-1.5 text-xs font-medium rounded text-gray-500 transition-all">混合云</button>
+                    <button onclick="switchGTM('partner')" id="gtm-btn-partner" class="gtm-tab px-6 py-1.5 text-xs font-medium rounded text-gray-500 transition-all">伙伴云</button>
+                </div>
+            </div>
+
+            <!-- 公有云详情内容 (包含 Data & AI 等) -->
+            <div id="gtm-panel-public" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Data & AI -->
+                <div class="section-card p-6 border-l-4 border-red-600">
+                    <div class="flex items-center mb-4 text-red-600">
+                        <i class="fas fa-brain text-2xl mr-3"></i>
+                        <h4 class="font-bold text-gray-800">Data & AI</h4>
+                    </div>
+                    <ul class="text-xs text-gray-500 space-y-3">
+                        <li class="hover:text-red-600 cursor-pointer flex items-center"><i class="far fa-file-alt mr-2"></i> 盘古大模型 5.0 上市一套表</li>
+                        <li class="hover:text-red-600 cursor-pointer flex items-center"><i class="far fa-file-alt mr-2"></i> 数据湖治理作战地图 V2.0</li>
+                    </ul>
+                </div>
+                <!-- 基础设施 -->
+                <div class="section-card p-6 border-l-4 border-blue-500">
+                    <div class="flex items-center mb-4 text-blue-500">
+                        <i class="fas fa-server text-2xl mr-3"></i>
+                        <h4 class="font-bold text-gray-800">基础设施</h4>
+                    </div>
+                    <ul class="text-xs text-gray-500 space-y-3">
+                        <li class="hover:text-red-600 cursor-pointer flex items-center"><i class="far fa-file-alt mr-2"></i> 计算/存储 Q3 上市明细清单</li>
+                        <li class="hover:text-red-600 cursor-pointer flex items-center"><i class="far fa-file-alt mr-2"></i> 算力底座建设作战指南</li>
+                    </ul>
+                </div>
+                <!-- 数据库 -->
+                <div class="section-card p-6 border-l-4 border-orange-500">
+                    <div class="flex items-center mb-4 text-orange-500">
+                        <i class="fas fa-database text-2xl mr-3"></i>
+                        <h4 class="font-bold text-gray-800">数据库</h4>
+                    </div>
+                    <ul class="text-xs text-gray-500 space-y-3">
+                        <li class="hover:text-red-600 cursor-pointer flex items-center"><i class="far fa-file-alt mr-2"></i> GaussDB 迁移作战地图</li>
+                        <li class="hover:text-red-600 cursor-pointer flex items-center"><i class="far fa-file-alt mr-2"></i> 数据库国产化替代白皮书</li>
+                    </ul>
+                </div>
+                <!-- 安全 -->
+                <div class="section-card p-6 border-l-4 border-green-500">
+                    <div class="flex items-center mb-4 text-green-600">
+                        <i class="fas fa-shield-alt text-2xl mr-3"></i>
+                        <h4 class="font-bold text-gray-800">安全</h4>
+                    </div>
+                    <ul class="text-xs text-gray-500 space-y-3">
+                        <li class="hover:text-red-600 cursor-pointer flex items-center"><i class="far fa-file-alt mr-2"></i> 云安全中心 V4.0 上市策略</li>
+                        <li class="hover:text-red-600 cursor-pointer flex items-center"><i class="far fa-file-alt mr-2"></i> 行业等保合规一张表</li>
+                    </ul>
+                </div>
+                <!-- 场景化解决方案 -->
+                <div class="section-card p-6 border-l-4 border-purple-600">
+                    <div class="flex items-center mb-4 text-purple-600">
+                        <i class="fas fa-lightbulb text-2xl mr-3"></i>
+                        <h4 class="font-bold text-gray-800">场景化解决方案</h4>
+                    </div>
+                    <ul class="text-xs text-gray-500 space-y-3">
+                        <li class="hover:text-red-600 cursor-pointer flex items-center"><i class="far fa-file-alt mr-2"></i> 智慧矿山/智慧工厂上市资料</li>
+                        <li class="hover:text-red-600 cursor-pointer flex items-center"><i class="far fa-file-alt mr-2"></i> 场景化作战：从入场到交付手册</li>
+                    </ul>
+                </div>
+                <!-- 商业市场解决方案 -->
+                <div class="section-card p-6 border-l-4 border-gray-400">
+                    <div class="flex items-center mb-4 text-gray-400">
+                        <i class="fas fa-store text-2xl mr-3"></i>
+                        <h4 class="font-bold text-gray-800">商业市场解决方案</h4>
+                    </div>
+                    <ul class="text-xs text-gray-500 space-y-3">
+                        <li class="hover:text-red-600 cursor-pointer flex items-center"><i class="far fa-file-alt mr-2"></i> 中小企业数字化转型包清单</li>
+                        <li class="hover:text-red-600 cursor-pointer flex items-center"><i class="far fa-file-alt mr-2"></i> 商业市场分销产品上市手册</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 其他云展厅占位 -->
+            <div id="gtm-panel-other" class="hidden py-24 text-center text-gray-400 bg-white rounded">
+                <i class="fas fa-folder-open text-4xl mb-4"></i>
+                <p>相关资料正在整理中，敬请期待...</p>
+            </div>
+        </section>
+
+        <!-- 内容板块：最新资讯/课程/周报/话题/情报 -->
+        <section class="space-y-16">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <!-- 左侧: 最新资讯 & 精品课程 -->
+                <div class="lg:col-span-2 space-y-12">
+                    <div>
+                        <h3 class="section-title-line">最新资讯</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="section-card p-4 flex space-x-4 cursor-pointer group">
+                                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=120" class="w-20 h-20 object-cover rounded" alt="News">
+                                <div>
+                                    <h5 class="text-sm font-bold group-hover:text-red-600 line-clamp-2">华为云 GaussDB 正式上线全球 10+ 节点</h5>
+                                    <p class="text-[10px] text-gray-400 mt-2">2024-05-18 · 战略要闻</p>
+                                </div>
+                            </div>
+                            <div class="section-card p-4 flex space-x-4 cursor-pointer group">
+                                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=120" class="w-20 h-20 object-cover rounded" alt="News">
+                                <div>
+                                    <h5 class="text-sm font-bold group-hover:text-red-600 line-clamp-2">某省级政务云大模型迁移实战案例分享</h5>
+                                    <p class="text-[10px] text-gray-400 mt-2">2024-05-17 · 作战经验</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="section-title-line">精品课程</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div class="section-card p-3 cursor-pointer group">
+                                <div class="relative overflow-hidden rounded mb-2">
+                                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=300" class="w-full h-24 object-cover" alt="Course">
+                                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all">
+                                        <i class="fas fa-play text-white text-xl"></i>
+                                    </div>
+                                </div>
+                                <h5 class="text-xs font-bold group-hover:text-red-600">L3: 盘古大模型应用开发指南</h5>
+                                <p class="text-[10px] text-gray-400 mt-1">45分钟 · 1.2k 人已学</p>
+                            </div>
+                            <div class="section-card p-3 cursor-pointer group">
+                                <div class="relative overflow-hidden rounded mb-2">
+                                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=300" class="w-full h-24 object-cover" alt="Course">
+                                </div>
+                                <h5 class="text-xs font-bold group-hover:text-red-600">云原生基础设施进阶：弹性计算</h5>
+                                <p class="text-[10px] text-gray-400 mt-1">32分钟 · 850 人已学</p>
+                            </div>
+                            <div class="section-card p-3 cursor-pointer group">
+                                <div class="relative overflow-hidden rounded mb-2">
+                                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=300" class="w-full h-24 object-cover" alt="Course">
+                                </div>
+                                <h5 class="text-xs font-bold group-hover:text-red-600">做客户：金融大户拓展标准话术</h5>
+                                <p class="text-[10px] text-gray-400 mt-1">28分钟 · 2.1k 人已学</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧: 产业周报 & 热门话题 & 每日情报 -->
+                <div class="space-y-12">
+                    <div>
+                        <h3 class="section-title-line">产业周报</h3>
+                        <div class="bg-white rounded p-4 space-y-3">
+                            <div class="flex items-center justify-between p-2 hover:bg-red-50 rounded cursor-pointer group transition-all">
+                                <span class="text-xs font-medium group-hover:text-red-600"><i class="fas fa-file-pdf mr-2"></i>【第32期】全球公有云趋势分析</span>
+                                <i class="fas fa-download text-gray-300"></i>
+                            </div>
+                            <div class="flex items-center justify-between p-2 hover:bg-red-50 rounded cursor-pointer group transition-all">
+                                <span class="text-xs font-medium group-hover:text-red-600"><i class="fas fa-file-pdf mr-2"></i>【第31期】政企大模型落地指引</span>
+                                <i class="fas fa-download text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="section-title-line">热门话题</h3>
+                        <div class="space-y-3">
+                            <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r cursor-pointer hover:shadow-md transition-shadow">
+                                <p class="text-xs font-bold text-blue-900"># 如何在传统行业快速落地盘古 5.0 #</p>
+                                <p class="text-[10px] text-blue-600 mt-1">345 人参与 · 1.5k 关注</p>
+                            </div>
+                            <div class="p-4 bg-orange-50 border-l-4 border-orange-500 rounded-r cursor-pointer hover:shadow-md transition-shadow">
+                                <p class="text-xs font-bold text-orange-900"># 作战地图：政务迁云最难的一步是什么 #</p>
+                                <p class="text-[10px] text-orange-600 mt-1">112 人参与 · 890 关注</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="section-title-line text-red-600">每日情报</h3>
+                        <div class="bg-white p-6 rounded relative pl-10 border-l-2 border-gray-100 space-y-8">
+                            <div class="relative">
+                                <div class="absolute -left-[45px] top-1 w-4 h-4 bg-red-600 rounded-full border-4 border-white"></div>
+                                <span class="text-xs font-bold text-gray-400">09:45</span>
+                                <p class="text-xs text-gray-700 mt-1">【竞情】某友商下调亚太区存储价格 10%。</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -left-[45px] top-1 w-4 h-4 bg-blue-500 rounded-full border-4 border-white"></div>
+                                <span class="text-xs font-bold text-gray-400">11:30</span>
+                                <p class="text-xs text-gray-700 mt-1">【项目】华南电力某项目正式交付上线。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 表彰专区 (移至底部) -->
+        <section class="bg-white p-10 rounded shadow-sm border-t-4 border-red-600">
+            <div class="flex items-center justify-between mb-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-2">荣耀殿堂：作战表彰专区</h3>
+                    <p class="text-sm text-gray-400">以奋斗者为本，共建卓越作战与学习社区</p>
+                </div>
+                <i class="fas fa-trophy text-5xl text-yellow-400 opacity-30"></i>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- 项目奖 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 border-b pb-3 mb-8 flex items-center uppercase tracking-widest"><i class="fas fa-award mr-2 text-red-500"></i> 项目卓越奖 (TOP 奋斗者)</h4>
+                    <div class="flex justify-around items-end">
+                        <div class="text-center group w-1/3">
+                            <img src="https://i.pravatar.cc/150?u=12" class="w-16 h-16 rounded-full mx-auto mb-3 border-2 border-gray-100" alt="Avatar">
+                            <p class="text-sm font-bold">李四</p>
+                            <p class="text-[10px] text-gray-400">华东区攻坚组</p>
+                            <div class="h-16 w-16 bg-gray-100 mx-auto mt-2 rounded-t flex items-center justify-center font-bold text-gray-400">2</div>
+                        </div>
+                        <div class="text-center group w-1/3">
+                            <img src="https://i.pravatar.cc/150?u=11" class="w-24 h-24 rounded-full mx-auto mb-3 border-4 border-yellow-400 shadow-lg" alt="Avatar">
+                            <p class="text-lg font-bold">张三</p>
+                            <p class="text-xs text-gray-400">政务云标杆项目</p>
+                            <div class="h-24 w-16 bg-red-600 mx-auto mt-2 rounded-t flex items-center justify-center font-bold text-white text-xl shadow-lg">1</div>
+                        </div>
+                        <div class="text-center group w-1/3">
+                            <img src="https://i.pravatar.cc/150?u=13" class="w-16 h-16 rounded-full mx-auto mb-3 border-2 border-gray-100" alt="Avatar">
+                            <p class="text-sm font-bold">王五</p>
+                            <p class="text-[10px] text-gray-400">金融核心升级</p>
+                            <div class="h-12 w-16 bg-orange-100 mx-auto mt-2 rounded-t flex items-center justify-center font-bold text-orange-400">3</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 考试奖 -->
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 border-b pb-3 mb-8 flex items-center uppercase tracking-widest"><i class="fas fa-graduation-cap mr-2 text-blue-500"></i> 考试全优榜单</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded hover:bg-red-50 transition-colors group cursor-pointer">
+                            <div class="flex items-center space-x-4">
+                                <span class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center text-xs font-bold">A+</span>
+                                <div>
+                                    <p class="text-sm font-bold group-hover:text-red-600">赵丽 (华南中心)</p>
+                                    <p class="text-[10px] text-gray-400">HCIE-Cloud 认证考试 (满分)</p>
+                                </div>
+                            </div>
+                            <span class="text-xs font-bold text-gray-400">2024.05</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded hover:bg-red-50 transition-colors group cursor-pointer">
+                            <div class="flex items-center space-x-4">
+                                <span class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold">A</span>
+                                <div>
+                                    <p class="text-sm font-bold group-hover:text-red-600">钱小强 (海外中心)</p>
+                                    <p class="text-[10px] text-gray-400">作战地图赋能认证考试 (98分)</p>
+                                </div>
+                            </div>
+                            <span class="text-xs font-bold text-gray-400">2024.05</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-gray-500 py-12">
+        <div class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-xs">
+            <div class="flex space-x-8 mb-4 md:mb-0">
+                <a href="#" class="hover:text-white transition-colors">关于华为云</a>
+                <a href="#" class="hover:text-white transition-colors">法律声明</a>
+                <a href="#" class="hover:text-white transition-colors">隐私保护</a>
+                <a href="#" class="hover:text-white transition-colors">联系我们</a>
+            </div>
+            <p>© 2024 华为云计算技术有限公司 版权所有 | 粤ICP备090013号</p>
+        </div>
+    </footer>
+
+    <script>
+        // GTM 选项切换逻辑
+        function switchGTM(type) {
+            const tabs = ['public', 'hybrid', 'partner'];
+            const panels = {
+                'public': document.getElementById('gtm-panel-public'),
+                'other': document.getElementById('gtm-panel-other')
+            };
+
+            // 重置所有按钮样式
+            tabs.forEach(t => {
+                const btn = document.getElementById('gtm-btn-' + t);
+                btn.className = "gtm-tab px-6 py-1.5 text-xs font-medium rounded text-gray-500 transition-all";
+            });
+
+            // 激活当前按钮
+            document.getElementById('gtm-btn-' + type).className = "gtm-tab active px-6 py-1.5 text-xs font-bold rounded transition-all";
+
+            // 切换面板内容
+            if (type === 'public') {
+                panels.public.classList.remove('hidden');
+                panels.other.classList.add('hidden');
+            } else {
+                panels.public.classList.add('hidden');
+                panels.other.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
